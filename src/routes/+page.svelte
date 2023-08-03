@@ -5,15 +5,14 @@
     {#if !filteredPokemons}
         <p>No pokemons found</p>
     {:else}
-    {#each filteredPokemons as pokemon}
-        <PokemonCard {pokemon} />
-    {/each}
-
+        {#each filteredPokemons as pokemon}
+            <PokemonCard {pokemon} on:click={() => handleClickPokemon(pokemon.id)} />
+        {/each}
     {/if}
-    
 </div>
 
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import PokemonCard from '$lib/components/pokemon-card.svelte';
     import type { PageData } from './$types';
 
@@ -33,6 +32,10 @@
         } else {
             filteredPokemons = pokemons;
         }
+    }
+
+    const handleClickPokemon = (pokemonId: string) => {
+        goto(`/pokemon/${pokemonId}`)
     }
 </script>
  

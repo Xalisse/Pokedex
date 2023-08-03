@@ -1,11 +1,14 @@
-<div>
+<button on:click={() => dispatch('click')}>
     <h2>{pokemon.name}</h2>
     <p>{pokemon.id}</p>
     <img src={pokemon.spriteNormalUrl} alt={pokemon.name} />
     <img src={pokemon.spriteShinyUrl} alt={pokemon.name} on:error={handleError}/>
-</div>
+</button>
 
 <script lang="ts">
+	import { handleError } from "$lib/utils/image-not-found";
+	import { createEventDispatcher } from "svelte";
+
     export let pokemon: {
         name: string;
         id: string;
@@ -13,8 +16,6 @@
         spriteShinyUrl: string;
     };
 
-    let fallback = 'http://placekitten.com/96/96'
-
-    const handleError = ev => ev.target.src = fallback
+    const dispatch = createEventDispatcher<Record<'click', void>>()
 
 </script>
