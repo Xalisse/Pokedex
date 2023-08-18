@@ -9,7 +9,7 @@
         <p>N°{pokemon.id}</p>
         <div class='flex gap-4'>
             {#each pokemon.types as type}
-                <PokemonTypeBadge type={type} />
+                <PokemonSmallTypeBadge type={type} />
             {/each}
         </div>
     </div>
@@ -19,7 +19,7 @@
     import { createEventDispatcher } from "svelte";
 	import PokemonSprite from "./pokemon-sprite.svelte";
 	import type { PokemonTypeEnum } from "$lib/models/pokemon-type";
-	import PokemonTypeBadge from "./pokemon-type-badge.svelte";
+	import PokemonSmallTypeBadge from "./pokemon-small-type-badge.svelte";
     export let pokemon: {
         name: string;
         id: string;
