@@ -1,8 +1,8 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div on:click={() => dispatch('click')} class='flex gap-6 items-center border border-gray-200 rounded-full'>
-    <div class='w-36'>
-        <PokemonSprite name={pokemon.name} type={pokemon.types[0]} spriteNormalUrl={pokemon.spriteNormalUrl} spriteShinyUrl={pokemon.spriteShinyUrl} />
+    <div class='w-24 h-20'>
+        <PokemonSprite height={65} reduceOpacity={true} name={pokemon.name} type={pokemon.types[0]} spriteNormalUrl={pokemon.spriteNormalUrl} spriteShinyUrl={pokemon.spriteShinyUrl} />
     </div>
     <div>
         <p class='capitalize font-semibold'>{pokemon.name}</p>

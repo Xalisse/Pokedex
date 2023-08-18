@@ -1,40 +1,40 @@
 <!-- Return the correct icon depending on type -->
 {#if type === PokemonTypeEnum.BUG}
-    <BugIcon isColored={isColored} height={height} />
+    <BugIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.DARK}
-    <DarkIcon isColored={isColored} height={height} />
+    <DarkIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.DRAGON}
-    <DragonIcon isColored={isColored} height={height} />
+    <DragonIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.ELECTRIC}
-    <ElectricIcon isColored={isColored} height={height} />
+    <ElectricIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.FAIRY}
-    <FairyIcon isColored={isColored} height={height} />
+    <FairyIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.FIGHTING}
-    <FightingIcon isColored={isColored} height={height} />
+    <FightingIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.FIRE}
-    <FireIcon isColored={isColored} height={height} />
+    <FireIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.FLYING}
-    <FlyingIcon isColored={isColored} height={height} />
+    <FlyingIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.GHOST}
-    <GhostIcon isColored={isColored} height={height} />
+    <GhostIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.GRASS}
-    <GrassIcon isColored={isColored} height={height} />
+    <GrassIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.GROUND}
-    <GroundIcon isColored={isColored} height={height} />
+    <GroundIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.ICE}
-    <IceIcon isColored={isColored} height={height} />
+    <IceIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.NORMAL}
-    <NormalIcon isColored={isColored} height={height} />
+    <NormalIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.POISON}
-    <PoisonIcon isColored={isColored} height={height} />
+    <PoisonIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.PSYCHIC}
-    <PsychicIcon isColored={isColored} height={height} />
+    <PsychicIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.ROCK}
-    <RockIcon isColored={isColored} height={height} />
+    <RockIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.STEEL}
-    <SteelIcon isColored={isColored} height={height} />
+    <SteelIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {:else if type === PokemonTypeEnum.WATER}
-    <WaterIcon isColored={isColored} height={height} />
+    <WaterIcon isColored={isColored} height={height} reduceOpacity={reduceOpacity} />
 {/if}
 
 <script lang="ts">
@@ -61,4 +61,5 @@
     export let isColored: boolean = false;
     export let height: number = 18;
     export let type: PokemonTypeEnum;
+    export let reduceOpacity: boolean = false;
 </script>
