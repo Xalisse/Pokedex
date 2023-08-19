@@ -1,3 +1,5 @@
+import { fillWithCharBefore } from '$lib/utils/fill-with-chars';
+
 export const load = async () => {
 	const allPokemonsQuery = `
 		query MyQuery {
@@ -34,7 +36,10 @@ export const load = async () => {
 					...lang,
 					pokemons: lang.pokemons.map((pokemon) => ({
 						...pokemon,
-						spriteNormalUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`,
+						spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
+							pokemon.id,
+							3
+						)}.png`,
 						spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`
 					}))
 				}))

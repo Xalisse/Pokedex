@@ -2,7 +2,7 @@
     <div class='absolute'>
         <TypeIcon type={type} height={height} reduceOpacity={reduceOpacity} />
     </div>
-    <img src={spriteNormalUrl} alt={name} class='absolute' />
+    <img src={spriteNormalUrl} alt={name} class='absolute h-24' />
 </div>
 
 <script lang="ts">

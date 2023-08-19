@@ -1,3 +1,6 @@
+import type { PokemonTypeEnum } from '$lib/models/pokemon-type.js';
+import { fillWithCharBefore } from '$lib/utils/fill-with-chars.js';
+
 const getFullPokemonData = (pokemonId: number) => {
 	console.log('🦄 ~ getFullPokemonData ~ pokemonId:', pokemonId);
 	const getPokemonQuery = `query MyQuery {
@@ -55,7 +58,7 @@ const getFullPokemonData = (pokemonId: number) => {
 						};
 						types: {
 							type: {
-								name: string;
+								name: PokemonTypeEnum;
 							};
 						}[];
 						moves: {
@@ -71,7 +74,10 @@ const getFullPokemonData = (pokemonId: number) => {
 				};
 			}) => ({
 				...res.data.pokemon[0],
-				spriteNormalUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.data.pokemon[0].id}.png`,
+				spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
+					res.data.pokemon[0].id,
+					3
+				)}.png`,
 				spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${res.data.pokemon[0].id}.png`,
 				types: res.data.pokemon[0].types.map((type) => type.type.name)
 			})
@@ -153,7 +159,7 @@ export const load = async ({ params, fetch }) => {
 						};
 						types: {
 							type: {
-								name: string;
+								name: PokemonTypeEnum;
 							};
 						}[];
 						moves: {
@@ -169,7 +175,10 @@ export const load = async ({ params, fetch }) => {
 				};
 			}) => ({
 				...res.data.pokemon[0],
-				spriteNormalUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.data.pokemon[0].id}.png`,
+				spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
+					res.data.pokemon[0].id,
+					3
+				)}.png`,
 				spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${res.data.pokemon[0].id}.png`,
 				types: res.data.pokemon[0].types.map((type) => type.type.name),
 				evolutionChain:

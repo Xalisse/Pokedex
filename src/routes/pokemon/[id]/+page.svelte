@@ -1,7 +1,8 @@
 <div>
-    <img src={data.spriteNormalUrl} alt={data.name} on:error={handleError} />
-    <img src={data.spriteShinyUrl} alt={data.name} on:error={handleError} />
-    
+    <div class="h-96">
+        <PokemonSpriteHeader spriteUrl={data.spriteNormalUrl} type={data.types[0]} />
+    </div>
+
     <h1 class="capitalize">{data.name}</h1>
     <p>N°{data.id}</p>
 
@@ -31,7 +32,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import PokemonSmallCard from "$lib/components/pokemon-small-card.svelte";
-	import { handleError } from "$lib/utils/image-not-found";
+	import PokemonSpriteHeader from "$lib/components/pokemon-sprite-header.svelte";
 	import type { PageData } from "./$types";
 
     export let data: PageData;
