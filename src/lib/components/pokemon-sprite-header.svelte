@@ -1,11 +1,8 @@
-<div class="h-4/5 flex items-end">
-    <div class={`${bgColors.get(type)} h-full w-full flex justify-center items-center relative rounded-[145px/100px]`}>
-        <div class={`${bgColors.get(type)} h-2/5 w-full absolute top-0`}></div>
-        <div class='absolute'>
-            <TypeIcon type={type} height={200} reduceOpacity />
-        </div>
-        <img src={spriteUrl} alt='pokemon-sprite' class='absolute h-60 -bottom-11' />
+<div class="relative flex justify-center items-center">
+    <div class={`${bgColors.get(type)} my-circle h-96 w-screen flex justify-center items-center`}>
+        <TypeIcon type={type} height={300} reduceOpacity />
     </div>
+    <img src={spriteUrl} alt='pokemon-sprite' class='absolute h-60 -bottom-1' />
 </div>
 
 <script lang="ts">

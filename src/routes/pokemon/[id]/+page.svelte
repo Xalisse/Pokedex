@@ -1,8 +1,7 @@
-<div>
-    <div class="h-96">
-        <PokemonSpriteHeader spriteUrl={data.spriteNormalUrl} type={data.types[0]} />
-    </div>
+<PokemonSpriteHeader spriteUrl={data.spriteNormalUrl} type={data.types[0]} />
 
+
+<div>
     <h1>{data.name}</h1>
     <p class="text-lg text-gray-600 font-bold">N°{fillWithCharBefore(data.id, 3)}</p>
 
@@ -39,6 +38,7 @@
         {/each}
     </div>
 </div>
+
 
 <script lang="ts">
     import GiPlainArrow from 'svelte-icons/gi/GiPlainArrow.svelte'

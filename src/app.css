@@ -14,3 +14,7 @@ html {
 h1 {
 	@apply capitalize text-4xl;
 }
+
+.my-circle {
+	clip-path: circle(70vw at 50% 5%);
+}
