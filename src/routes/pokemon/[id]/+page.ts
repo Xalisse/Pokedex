@@ -12,6 +12,7 @@ const getFullPokemonData = (pokemonId: number) => {
 			rates: pokemon_v2_pokemonspecy {
 				gender: gender_rate
 				capture: capture_rate
+				hatch: hatch_counter
 			}
             types: pokemon_v2_pokemontypes {
                 type: pokemon_v2_type {
@@ -38,6 +39,7 @@ const getFullPokemonData = (pokemonId: number) => {
 	})
 		.then(async (res) => res.json())
 		.then((res) => {
+			console.log('🦄 ~ .then ~ res:', 255 * (res.data.pokemon[0].rates.hatch + 1));
 			if (res.errors) {
 				console.log('🦄 ERROR:', res.errors[0]);
 				throw new Error(res.errors[0].message);
@@ -55,6 +57,7 @@ const getFullPokemonData = (pokemonId: number) => {
 						rates: {
 							gender: number;
 							capture: number;
+							hatch: number;
 						};
 						types: {
 							type: {
@@ -74,6 +77,8 @@ const getFullPokemonData = (pokemonId: number) => {
 				};
 			}) => ({
 				...res.data.pokemon[0],
+				height: res.data.pokemon[0].height / 10,
+				weight: res.data.pokemon[0].weight / 10,
 				spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
 					res.data.pokemon[0].id,
 					3
@@ -103,6 +108,7 @@ export const load = async ({ params, fetch }) => {
 			rates: pokemon_v2_pokemonspecy {
 				gender: gender_rate
 				capture: capture_rate
+				hatch: hatch_counter
 			}
             types: pokemon_v2_pokemontypes {
                 type: pokemon_v2_type {
@@ -156,6 +162,7 @@ export const load = async ({ params, fetch }) => {
 						rates: {
 							gender: number;
 							capture: number;
+							hatch: number;
 						};
 						types: {
 							type: {
@@ -175,6 +182,8 @@ export const load = async ({ params, fetch }) => {
 				};
 			}) => ({
 				...res.data.pokemon[0],
+				height: res.data.pokemon[0].height / 10,
+				weight: res.data.pokemon[0].weight / 10,
 				spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
 					res.data.pokemon[0].id,
 					3

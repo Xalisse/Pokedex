@@ -1,5 +1,5 @@
 <div class="text-gray-600">
-    <p class="uppercase text-center">Gender</p>
+    <p class="uppercase text-center text-lg">Gender</p>
     <div class="h-3 relative">
         <div id="bg-gender" class="bg-pink-400 h-full w-full rounded-full"></div>
         <div id="percentage-gender" class="bg-sky-800 h-full rounded-l-full absolute top-0" style={`width:${percentageMale}%`}></div>
