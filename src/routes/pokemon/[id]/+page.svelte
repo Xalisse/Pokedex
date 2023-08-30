@@ -6,7 +6,7 @@
     <h1>{data.name}</h1>
     <p class="text-lg text-gray-600 font-bold">N°{fillWithCharBefore(data.id, 3)}</p>
 
-    <div class="flex gap-2 mb-2">
+    <div class="flex gap-2 mt-8 mb-12">
         {#each data.types as type}
             <PokemonTypeBadge type={type} />
         {/each}
@@ -14,7 +14,7 @@
 
     <PokemonGender gender={data.rates.gender} />
     
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-2 gap-6 my-12">
         <PokemonInfoCard title="Weight" value={`${data.weight} kg`}>
             <GiWeight slot="icon" />
         </PokemonInfoCard>
@@ -29,21 +29,19 @@
         </PokemonInfoCard>
     </div>
 
-    <p class='text-lg text-gray-600 uppercase text-center'>Evolutions</p>
+    <p class='text-lg text-gray-600 uppercase text-center mb-2'>Evolutions</p>
     <div class='grid gap-4'>
-        {#each data.evolutionChain as evolution}
-            {#await evolution}
-                <p>loading...</p>
-            {:then pokemon}
-                <PokemonSmallCard on:click={() => goto(`/pokemon/${pokemon.id}`)} pokemon={pokemon} />
-            {:catch error}
-                <p>{error.message}</p>
-            {/await}
+        {#each data.evolutionChain as pokemon, index}
+            <PokemonSmallCard on:click={() => goto(`/pokemon/${pokemon.id}`)} pokemon={pokemon} />
+            {#if index < data.evolutionChain.length - 1}
+                <p class="h-5 text-gray-600"><GiPlainArrow /></p>
+            {/if}
         {/each}
     </div>
 </div>
 
 <script lang="ts">
+    import GiPlainArrow from 'svelte-icons/gi/GiPlainArrow.svelte'
     import GiBigEgg from 'svelte-icons/gi/GiBigEgg.svelte'
     import GiDiceSixFacesSix from 'svelte-icons/gi/GiDiceSixFacesSix.svelte'
     import GiBodyHeight from 'svelte-icons/gi/GiBodyHeight.svelte'

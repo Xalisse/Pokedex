@@ -7,24 +7,8 @@ const getFullPokemonData = (pokemonId: number) => {
         pokemon: pokemon_v2_pokemon(where: {id: {_eq: ${pokemonId}}}) {
             id
             name
-			height
-			weight
-			rates: pokemon_v2_pokemonspecy {
-				gender: gender_rate
-				capture: capture_rate
-				hatch: hatch_counter
-			}
             types: pokemon_v2_pokemontypes {
                 type: pokemon_v2_type {
-                    name
-                }
-            }
-            moves: pokemon_v2_pokemonmoves {
-                level
-                move: pokemon_v2_move {
-                    name
-                }
-                learnMethod: pokemon_v2_movelearnmethod {
                     name
                 }
             }
@@ -39,7 +23,6 @@ const getFullPokemonData = (pokemonId: number) => {
 	})
 		.then(async (res) => res.json())
 		.then((res) => {
-			console.log('🦄 ~ .then ~ res:', 255 * (res.data.pokemon[0].rates.hatch + 1));
 			if (res.errors) {
 				console.log('🦄 ERROR:', res.errors[0]);
 				throw new Error(res.errors[0].message);
@@ -52,33 +35,15 @@ const getFullPokemonData = (pokemonId: number) => {
 					pokemon: {
 						id: string;
 						name: string;
-						height: number;
-						weight: number;
-						rates: {
-							gender: number;
-							capture: number;
-							hatch: number;
-						};
 						types: {
 							type: {
 								name: PokemonTypeEnum;
-							};
-						}[];
-						moves: {
-							level: number;
-							move: {
-								name: string;
-							};
-							learnMethod: {
-								name: string;
 							};
 						}[];
 					}[];
 				};
 			}) => ({
 				...res.data.pokemon[0],
-				height: res.data.pokemon[0].height / 10,
-				weight: res.data.pokemon[0].weight / 10,
 				spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
 					res.data.pokemon[0].id,
 					3
@@ -99,9 +64,7 @@ export const load = async ({ params, fetch }) => {
 			evolutionChain: pokemon_v2_pokemonspecy {
 				pokemon_v2_evolutionchain {
 					pokemon_v2_pokemonspecies {
-						name
 						id
-						order
 					}
 				}
 			}
@@ -143,7 +106,7 @@ export const load = async ({ params, fetch }) => {
 			return res;
 		})
 		.then(
-			(res: {
+			async (res: {
 				data: {
 					pokemon: {
 						id: string;
@@ -153,9 +116,7 @@ export const load = async ({ params, fetch }) => {
 						evolutionChain: {
 							pokemon_v2_evolutionchain: {
 								pokemon_v2_pokemonspecies: {
-									name: string;
 									id: number;
-									order: number;
 								}[];
 							};
 						};
@@ -180,21 +141,25 @@ export const load = async ({ params, fetch }) => {
 						}[];
 					}[];
 				};
-			}) => ({
-				...res.data.pokemon[0],
-				height: res.data.pokemon[0].height / 10,
-				weight: res.data.pokemon[0].weight / 10,
-				spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
-					res.data.pokemon[0].id,
-					3
-				)}.png`,
-				spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${res.data.pokemon[0].id}.png`,
-				types: res.data.pokemon[0].types.map((type) => type.type.name),
-				evolutionChain:
+			}) => {
+				const evolutionChain = await Promise.all(
 					res.data.pokemon[0].evolutionChain.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies.map(
 						(pokemon) => getFullPokemonData(pokemon.id)
 					)
-			})
+				);
+				return {
+					...res.data.pokemon[0],
+					height: res.data.pokemon[0].height / 10,
+					weight: res.data.pokemon[0].weight / 10,
+					spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
+						res.data.pokemon[0].id,
+						3
+					)}.png`,
+					spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${res.data.pokemon[0].id}.png`,
+					types: res.data.pokemon[0].types.map((type) => type.type.name),
+					evolutionChain: evolutionChain.sort((a, b) => Number(a.id) - Number(b.id))
+				};
+			}
 		);
 
 	return data;
