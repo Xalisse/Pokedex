@@ -1,4 +1,4 @@
-<div class={`flex justify-center items-center gap-2 px-4 py-1 rounded-full ${bgColors.get(type)}`}>
+<div class={`flex justify-center items-center gap-2 px-4 py-1 rounded-full ${bgColors.get(type)} text-white`}>
     <div class='bg-white rounded-full h-7 w-7 flex justify-center items-center'>
         <TypeIcon type={type} isColored />
     </div>

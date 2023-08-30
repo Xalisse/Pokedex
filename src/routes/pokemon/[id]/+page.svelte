@@ -3,16 +3,19 @@
         <PokemonSpriteHeader spriteUrl={data.spriteNormalUrl} type={data.types[0]} />
     </div>
 
-    <h1 class="capitalize">{data.name}</h1>
-    <p>N°{data.id}</p>
+    <h1>{data.name}</h1>
+    <p class="text-lg text-gray-600 font-bold">N°{fillWithCharBefore(data.id, 3)}</p>
 
-    {#each data.types as type}
-        <p>{type}</p>
-    {/each}
+    <div class="flex gap-2 mb-2">
+        {#each data.types as type}
+            <PokemonTypeBadge type={type} />
+        {/each}
+    </div>
+
+    <PokemonGender gender={data.rates.gender} />
     
     <p>{data.weight}</p>
     <p>{data.height}</p>
-    <p>{data.rates.gender} / 8 being female</p>
     <p>{data.rates.capture} / 255 being captured</p>
 
     <h2>Evolutions</h2>
@@ -31,8 +34,11 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import PokemonGender from "$lib/components/pokemon-gender.svelte";
 	import PokemonSmallCard from "$lib/components/pokemon-small-card.svelte";
 	import PokemonSpriteHeader from "$lib/components/pokemon-sprite-header.svelte";
+	import PokemonTypeBadge from "$lib/components/pokemon-type-badge.svelte";
+	import { fillWithCharBefore } from "$lib/utils/fill-with-chars";
 	import type { PageData } from "./$types";
 
     export let data: PageData;

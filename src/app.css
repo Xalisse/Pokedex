@@ -10,3 +10,7 @@
 html {
 	font-size: 14px;
 }
+
+h1 {
+	@apply capitalize text-4xl;
+}
