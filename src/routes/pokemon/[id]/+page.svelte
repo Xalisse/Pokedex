@@ -1,7 +1,7 @@
 <PokemonSpriteHeader spriteUrl={data.spriteNormalUrl} type={data.types[0]} />
 
 
-<div>
+<div class="px-5">
     <h1>{data.name}</h1>
     <p class="text-lg text-gray-600 font-bold">N°{fillWithCharBefore(data.id, 3)}</p>
 

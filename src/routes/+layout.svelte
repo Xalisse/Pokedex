@@ -2,4 +2,4 @@
   import "../app.css";
 </script>
 
-<slot />
+<div class="w-[414px] m-auto border-x border-gray-100"><slot /></div>
