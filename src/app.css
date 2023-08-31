@@ -16,5 +16,5 @@ h1 {
 }
 
 .my-circle {
-	clip-path: circle(70vw at 50% 5%);
+	clip-path: circle(300px at 50% 5%);
 }
