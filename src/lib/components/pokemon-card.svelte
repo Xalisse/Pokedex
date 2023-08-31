@@ -1,4 +1,4 @@
-<button on:click={() => dispatch('click')} class={`${bgColors.get(`${pokemon.types[0]}-light`)} grid grid-rows-1 grid-cols-[1fr,150px] w-full h-32 rounded-2xl`}>
+<button on:click={() => dispatch('click')} class={`${bgColors.get(`${pokemon.types[0]}-light`)} grid grid-rows-1 grid-cols-[1fr,130px] w-full h-32 rounded-2xl`}>
     <div class="p-4 h-full text-left">
         <p class="text-gray-600">N°{fillWithCharBefore(pokemon.id, 3)}</p>
         <h2 class="capitalize text-2xl font-bold mb-3">{pokemon.name}</h2>

@@ -1,6 +1,8 @@
-<h1>Pokedex</h1>
-<div>
-    <input type="text" placeholder="#3, venusaur..." on:keyup={handleSearchFor} />
+<div class="p-5">
+    <div class="w-full h-14 mb-5 px-7 border rounded-full flex items-center">
+        <span class="h-6 w-6 text-gray-600 mr-4"><GiMagnifyingGlass /></span>
+        <input type="text" class="w-full h-full outline-none" placeholder="Search a pokemon..." on:keyup={handleSearchFor} />
+    </div>
 
     {#if !filteredPokemons}
         <p>No pokemons found</p>
@@ -14,6 +16,7 @@
 </div>
 
 <script lang="ts">
+    import GiMagnifyingGlass from 'svelte-icons/gi/GiMagnifyingGlass.svelte'
 	import { goto } from '$app/navigation';
 	import PokemonCard from '$lib/components/pokemon-card.svelte';
     import type { PageData } from './$types';
