@@ -1,19 +1,9 @@
-import type { PokemonTypeEnum } from '$lib/models/pokemon-type';
+import { getPokemonBasicDataQuery } from '$lib/queries/pokemon-basic-data.query';
+import type { TPokemonFullDataQueryRes } from '$lib/queries/pokemon-full-data.query';
 import { fillWithCharBefore } from '$lib/utils/fill-with-chars';
 
 export const load = async () => {
-	const allPokemonsQuery = `
-		query MyQuery {
-			pokemons: pokemon_v2_pokemon(where: {is_default: {_eq: true}}) {
-				name
-				id
-				types: pokemon_v2_pokemontypes {
-					type: pokemon_v2_type {
-						name
-					}
-				}
-			}
-		}`;
+	const allPokemonsQuery = getPokemonBasicDataQuery();
 	const data = await fetch('https://beta.pokeapi.co/graphql/v1beta', {
 		method: 'POST',
 		headers: {
@@ -25,15 +15,7 @@ export const load = async () => {
 		.then(
 			(res: {
 				data: {
-					pokemons: {
-						name: string;
-						id: string;
-						types: {
-							type: {
-								name: PokemonTypeEnum;
-							};
-						}[];
-					}[];
+					pokemons: TPokemonFullDataQueryRes[];
 				};
 			}) =>
 				res.data.pokemons.map((pokemon) => ({
