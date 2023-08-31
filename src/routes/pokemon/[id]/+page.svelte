@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Pokedex - {data.name}</title>
+</svelte:head>
+
 <PokemonSpriteHeader spriteUrl={data.spriteNormalUrl} type={data.types[0]} />
 <button class="h-8 w-8 text-white absolute top-6 ml-5" on:click={handleBack}><IoIosArrowBack /></button>
 
