@@ -18,3 +18,17 @@ h1 {
 .my-circle {
 	clip-path: circle(300px at 50% 5%);
 }
+
+.my-stripes {
+	background-image: linear-gradient(
+		130deg,
+		#9b9b9b 6.25%,
+		#ffffff 6.25%,
+		#ffffff 50%,
+		#9b9b9b 50%,
+		#9b9b9b 56.25%,
+		#ffffff 56.25%,
+		#ffffff 100%
+	);
+	background-size: 10.44px 12.45px;
+}
