@@ -1,5 +1,5 @@
 <PokemonSpriteHeader spriteUrl={data.spriteNormalUrl} type={data.types[0]} />
-
+<button class="h-8 w-8 text-white absolute top-6 ml-5" on:click={handleBack}><IoIosArrowBack /></button>
 
 <div class="px-5">
     <h1>{data.name}</h1>
@@ -41,6 +41,7 @@
 
 
 <script lang="ts">
+    import IoIosArrowBack from 'svelte-icons/io/IoIosArrowBack.svelte'
     import GiPlainArrow from 'svelte-icons/gi/GiPlainArrow.svelte'
     import GiBigEgg from 'svelte-icons/gi/GiBigEgg.svelte'
     import GiDiceSixFacesSix from 'svelte-icons/gi/GiDiceSixFacesSix.svelte'
@@ -56,4 +57,8 @@
 	import type { PageData } from "./$types";
 
     export let data: PageData;
+
+    const handleBack = () => {
+        goto('/')
+    }
 </script>
