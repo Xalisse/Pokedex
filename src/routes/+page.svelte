@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Pokedex</title>
+</svelte:head>
+
 <div class="p-5">
     <div class="w-full h-14 mb-5 px-7 border rounded-full flex items-center">
         <span class="h-6 w-6 text-gray-600 mr-4"><GiMagnifyingGlass /></span>
