@@ -5,9 +5,11 @@
     {#if !filteredPokemons}
         <p>No pokemons found</p>
     {:else}
-        {#each filteredPokemons as pokemon}
-            <PokemonCard {pokemon} on:click={() => handleClickPokemon(pokemon.id)} />
-        {/each}
+        <div class="flex flex-col gap-4">
+            {#each filteredPokemons as pokemon}
+                <PokemonCard {pokemon} on:click={() => handleClickPokemon(pokemon.id)} />
+            {/each}
+        </div>
     {/if}
 </div>
 
@@ -17,20 +19,19 @@
     import type { PageData } from './$types';
 
     export let data: PageData;
-    let pokemons = data.lang.find(lang => lang.name === 'fr')?.pokemons;
-    let filteredPokemons = pokemons;
+    let filteredPokemons = data.pokemons;
 
     const handleSearchFor = (e: any) => {
         const searchText = e.target.value;
 
-        if (!pokemons) return;
+        if (!data) return;
 
         if (searchText.length > 0) {
-            filteredPokemons = pokemons.filter(pokemon => {
+            filteredPokemons = data.pokemons.filter(pokemon => {
                 return pokemon.name.toLowerCase().includes(searchText.toLowerCase())
             })
         } else {
-            filteredPokemons = pokemons;
+            filteredPokemons = data.pokemons;
         }
     }
 

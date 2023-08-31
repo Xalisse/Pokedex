@@ -1,4 +1,4 @@
-<div class={`rounded-full ${bgColors.get(type)} flex justify-center items-center h-full relative`}>
+<div class={`${fullRounded ? 'rounded-full' : 'rounded-2xl' } ${bgColors.get(type)} flex justify-center items-center h-full relative`}>
     <div class='absolute'>
         <TypeIcon type={type} height={height} reduceOpacity={reduceOpacity} />
     </div>
@@ -14,4 +14,5 @@
     export let type: PokemonTypeEnum;
     export let height: number;
     export let reduceOpacity: boolean = false;
+    export let fullRounded: boolean = true;
 </script>

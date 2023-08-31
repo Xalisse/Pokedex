@@ -1,15 +1,27 @@
-<button on:click={() => dispatch('click')}>
-    <h2>{pokemon.name}</h2>
-    <p>{pokemon.id}</p>
-    <img src={pokemon.spriteNormalUrl} alt={pokemon.name} />
-    <img src={pokemon.spriteShinyUrl} alt={pokemon.name} on:error={handleError}/>
+<button on:click={() => dispatch('click')} class={`${bgColors.get(`${pokemon.types[0]}-light`)} grid grid-rows-1 grid-cols-[1fr,150px] w-full h-32 rounded-2xl`}>
+    <div class="p-4 h-full text-left">
+        <p class="text-gray-600">N°{fillWithCharBefore(pokemon.id, 3)}</p>
+        <h2 class="capitalize text-2xl font-bold mb-3">{pokemon.name}</h2>
+        <div class="flex gap-2">
+            {#each pokemon.types as type}
+                <PokemonTypeBadge type={type} />
+            {/each}
+        </div>
+    </div>
+    <PokemonSprite spriteNormalUrl={pokemon.spriteNormalUrl} type={pokemon.types[0]} height={100} reduceOpacity fullRounded={false} on:error={handleError}/>
 </button>
 
 <script lang="ts">
+	import { bgColors } from "$lib/models/type-color";
+	import { fillWithCharBefore } from "$lib/utils/fill-with-chars";
 	import { handleError } from "$lib/utils/image-not-found";
 	import { createEventDispatcher } from "svelte";
+	import PokemonTypeBadge from "./pokemon-type-badge.svelte";
+	import type { PokemonTypeEnum } from "$lib/models/pokemon-type";
+	import PokemonSprite from "./pokemon-sprite.svelte";
 
     export let pokemon: {
+        types: PokemonTypeEnum[];
         name: string;
         id: string;
         spriteNormalUrl: string;

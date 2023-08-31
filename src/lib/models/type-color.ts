@@ -16,5 +16,24 @@ export const bgColors = new Map<string, string>([
 	['psychic', 'bg-psychic'],
 	['rock', 'bg-rock'],
 	['steel', 'bg-steel'],
-	['water', 'bg-water']
+	['water', 'bg-water'],
+
+	['bug-light', 'bg-bug-light'],
+	['dark-light', 'bg-dark-light'],
+	['dragon-light', 'bg-dragon-light'],
+	['electric-light', 'bg-electric-light'],
+	['fairy-light', 'bg-fairy-light'],
+	['fighting-light', 'bg-fighting-light'],
+	['fire-light', 'bg-fire-light'],
+	['flying-light', 'bg-flying-light'],
+	['ghost-light', 'bg-ghost-light'],
+	['grass-light', 'bg-grass-light'],
+	['ground-light', 'bg-ground-light'],
+	['ice-light', 'bg-ice-light'],
+	['normal-light', 'bg-normal-light'],
+	['poison-light', 'bg-poison-light'],
+	['psychic-light', 'bg-psychic-light'],
+	['rock-light', 'bg-rock-light'],
+	['steel-light', 'bg-steel-light'],
+	['water-light', 'bg-water-light']
 ]);

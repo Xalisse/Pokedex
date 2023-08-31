@@ -1,13 +1,16 @@
+import type { PokemonTypeEnum } from '$lib/models/pokemon-type';
 import { fillWithCharBefore } from '$lib/utils/fill-with-chars';
 
 export const load = async () => {
 	const allPokemonsQuery = `
 		query MyQuery {
-			lang: pokemon_v2_language {
+			pokemons: pokemon_v2_pokemon(where: {is_default: {_eq: true}}) {
 				name
-				pokemons: pokemon_v2_pokemonspeciesnames {
-					name
-					id: pokemon_species_id
+				id
+				types: pokemon_v2_pokemontypes {
+					type: pokemon_v2_type {
+						name
+					}
 				}
 			}
 		}`;
@@ -22,29 +25,26 @@ export const load = async () => {
 		.then(
 			(res: {
 				data: {
-					lang: {
+					pokemons: {
 						name: string;
-						pokemons: {
-							name: string;
-							id: string;
+						id: string;
+						types: {
+							type: {
+								name: PokemonTypeEnum;
+							};
 						}[];
 					}[];
 				};
-			}) => ({
-				...res.data,
-				lang: res.data.lang.map((lang) => ({
-					...lang,
-					pokemons: lang.pokemons.map((pokemon) => ({
-						...pokemon,
-						spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
-							pokemon.id,
-							3
-						)}.png`,
-						spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`
-					}))
+			}) =>
+				res.data.pokemons.map((pokemon) => ({
+					...pokemon,
+					types: pokemon.types.map((type) => type.type.name),
+					spriteNormalUrl: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${fillWithCharBefore(
+						pokemon.id,
+						3
+					)}.png`,
+					spriteShinyUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`
 				}))
-			})
 		);
-	console.log('🦄 ~ load ~ data:', data);
-	return data;
+	return { pokemons: data };
 };

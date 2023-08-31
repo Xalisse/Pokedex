@@ -2,7 +2,6 @@ import type { PokemonTypeEnum } from '$lib/models/pokemon-type.js';
 import { fillWithCharBefore } from '$lib/utils/fill-with-chars.js';
 
 const getFullPokemonData = (pokemonId: number) => {
-	console.log('🦄 ~ getFullPokemonData ~ pokemonId:', pokemonId);
 	const getPokemonQuery = `query MyQuery {
         pokemon: pokemon_v2_pokemon(where: {id: {_eq: ${pokemonId}}}) {
             id
@@ -24,7 +23,6 @@ const getFullPokemonData = (pokemonId: number) => {
 		.then(async (res) => res.json())
 		.then((res) => {
 			if (res.errors) {
-				console.log('🦄 ERROR:', res.errors[0]);
 				throw new Error(res.errors[0].message);
 			}
 			return res;
@@ -100,7 +98,6 @@ export const load = async ({ params, fetch }) => {
 		.then(async (res) => res.json())
 		.then((res) => {
 			if (res.errors) {
-				console.log('🦄 ERROR:', res.errors[0]);
 				throw new Error(res.errors[0].message);
 			}
 			return res;
