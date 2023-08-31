@@ -16,16 +16,11 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
 	import PokemonSprite from "./pokemon-sprite.svelte";
-	import type { PokemonTypeEnum } from "$lib/models/pokemon-type";
 	import PokemonSmallTypeBadge from "./pokemon-small-type-badge.svelte";
 	import { fillWithCharBefore } from "$lib/utils/fill-with-chars";
-    export let pokemon: {
-        name: string;
-        id: string;
-        spriteNormalUrl: string;
-        spriteShinyUrl: string;
-        types: PokemonTypeEnum[];
-    };
+	import type { IPokemon } from "$lib/models/pokemon.interface";
+    
+    export let pokemon: IPokemon;
 
     const dispatch = createEventDispatcher<Record<'click', void>>()
 </script>

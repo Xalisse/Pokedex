@@ -17,16 +17,10 @@
 	import { handleError } from "$lib/utils/image-not-found";
 	import { createEventDispatcher } from "svelte";
 	import PokemonTypeBadge from "./pokemon-type-badge.svelte";
-	import type { PokemonTypeEnum } from "$lib/models/pokemon-type";
 	import PokemonSprite from "./pokemon-sprite.svelte";
+	import type { IPokemon } from "$lib/models/pokemon.interface";
 
-    export let pokemon: {
-        types: PokemonTypeEnum[];
-        name: string;
-        id: string;
-        spriteNormalUrl: string;
-        spriteShinyUrl: string;
-    };
+    export let pokemon: IPokemon;
 
     const dispatch = createEventDispatcher<Record<'click', void>>()
 

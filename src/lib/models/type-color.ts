@@ -17,7 +17,6 @@ export const bgColors = new Map<string, string>([
 	['rock', 'bg-rock'],
 	['steel', 'bg-steel'],
 	['water', 'bg-water'],
-
 	['bug-light', 'bg-bug-light'],
 	['dark-light', 'bg-dark-light'],
 	['dragon-light', 'bg-dragon-light'],
