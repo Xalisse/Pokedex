@@ -2,12 +2,13 @@
     <div class='absolute'>
         <TypeIcon type={type} height={height} reduceOpacity={reduceOpacity} />
     </div>
-    <img src={spriteNormalUrl} alt='pokemon-sprite' class='absolute h-24' />
+    <img src={spriteNormalUrl} alt='pokemon-sprite' class='absolute h-24' on:error={handleError} />
 </div>
 
 <script lang="ts">
 	import type { PokemonTypeEnum } from "$lib/models/pokemon-type";
 	import { bgColors } from "$lib/models/type-color";
+	import { handleError } from "$lib/utils/image-not-found";
 	import TypeIcon from "./types/type-icon.svelte";
 
     export let spriteNormalUrl: string;

@@ -8,13 +8,12 @@
             {/each}
         </div>
     </div>
-    <PokemonSprite spriteNormalUrl={pokemon.spriteNormalUrl} type={pokemon.types[0]} height={100} reduceOpacity fullRounded={false} on:error={handleError}/>
+    <PokemonSprite spriteNormalUrl={pokemon.spriteNormalUrl} type={pokemon.types[0]} height={100} reduceOpacity fullRounded={false}/>
 </button>
 
 <script lang="ts">
 	import { bgColors } from "$lib/models/type-color";
 	import { fillWithCharBefore } from "$lib/utils/fill-with-chars";
-	import { handleError } from "$lib/utils/image-not-found";
 	import { createEventDispatcher } from "svelte";
 	import PokemonTypeBadge from "./pokemon-type-badge.svelte";
 	import PokemonSprite from "./pokemon-sprite.svelte";
