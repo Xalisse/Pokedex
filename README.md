@@ -12,6 +12,7 @@ Made with [Sveltekit](https://kit.svelte.dev/) & [PokAPI graphql](https://pokeap
 - [ ] Add as captured
 - [ ] Captured page
 - [ ] Desktop view
+- [ ] Add connection to save data for user
 - [ ] On home page, pagination
 - [ ] Pokemon name translation
 - [ ] Add a pokemon to favorites
