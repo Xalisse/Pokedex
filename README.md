@@ -7,9 +7,9 @@ Made with [Sveltekit](https://kit.svelte.dev/) & [PokAPI graphql](https://pokeap
 - [x] Pokemon page
 - [x] Pokemon list
 - [x] Search bar
-- [ ] Add as captured shiny
-- [ ] Add as captured perfect
-- [ ] Add as captured
+- [ ] Mark as captured shiny
+- [ ] Mark as captured perfect
+- [ ] Mark as captured
 - [ ] Captured page
 - [ ] Desktop view
 - [ ] Add connection to save data for user

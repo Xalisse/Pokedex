@@ -59,7 +59,7 @@
 	import WaterIcon from "./water-icon.svelte";
 
     export let isColored: boolean = false;
-    export let height: number = 18;
+    export let height: number = 16;
     export let type: PokemonTypeEnum;
     export let reduceOpacity: boolean = false;
 </script>
