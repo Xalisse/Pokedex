@@ -25,14 +25,16 @@
 	import PokemonCard from '$lib/components/pokemon-card.svelte';
     import type { PageData } from './$types';
     import authUser, { type IAuthUser } from "$lib/authStore";
-	import { firebaseAuth } from "$lib/firebase";
+	import { firebaseAuth, realtimeDatabase } from "$lib/firebase";
     import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+	import { child, get, ref, set } from 'firebase/database';
 
     export let data: PageData;
     let filteredPokemons = data.pokemons;
 
     let authUserData: IAuthUser | undefined;
     authUser.subscribe(value => {
+        console.log('🦄 ~ value:', value)
         authUserData = value;
     });
 
@@ -57,23 +59,58 @@
     const handleLogin = () => {
         const provider = new GoogleAuthProvider();
         return signInWithPopup(firebaseAuth, provider)
-        .then((result) => {
+        .then(async (result) => {
             $authUser = {
+                id: result.user.uid,
                 displayName: result.user.displayName ?? undefined,
                 email: result.user.email ?? undefined,
+                shinies: [] // TODO: get them from firestore
             }
-        }).catch((error) => {
+            console.log('HERE')
+            if (!result.user.email) return; // TODO: handle error
+        })
+        .then(() => {
+            const dbRef = ref(realtimeDatabase);
+            return get(child(dbRef, `users/${authUserData?.id}`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const user = snapshot.val();
+                        $authUser = {
+                            ...authUserData,
+                            shinies: user.shinies ?? []
+                        }
+                    } else {
+                        // First time login => create user in database
+                        const userRef = ref(realtimeDatabase, `users/${authUserData?.id}`)
+                        set(userRef, {
+                            email: authUserData?.email,
+                            displayName: authUserData?.displayName,
+                            shinies: {} // TODO: how to store an array ?
+                        });
+                    }
+                }).catch((error) => {
+                    console.error(error);
+                });
+        })
+        .catch((error) => {
             console.error('Error while login: ', error)
         });
     }
 
-    const handleShiny = (pokemonId: string) => {
+    const updateShinies = (shinies: string[], email: string) => {
+        // TODO: update shinies in database
+        
+    }
+
+    const handleShiny = async (pokemonId: string) => {
         if (!authUserData) {
-            handleLogin().then(() => {
-                // TODO: update shiny
-            })
-        } else {
-            // TODO: update shiny
+            const r = await handleLogin()
+            console.log('🦄 ~ handleShiny ~ r:', r)
+        } 
+        const newShinies = [...authUserData!.shinies, pokemonId]
+        updateShinies(newShinies, authUserData!.email!)
+        $authUser = {
+            ...authUserData,
+            shinies: newShinies
         }
     }
 </script>

@@ -16,7 +16,7 @@ export const getPokemonBasicDataQuery = (pokemonId?: number) => {
 	}
 
 	return `query MyQuery {
-        pokemons: pokemon_v2_pokemon(where: {is_default: {_eq: true}}) {
+        pokemons: pokemon_v2_pokemon(limit: 151, where: {is_default: {_eq: true}}) {
             name
             id
             types: pokemon_v2_pokemontypes {
